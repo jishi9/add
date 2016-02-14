@@ -1,6 +1,7 @@
 import curses
 from curses import wrapper
 from time import sleep
+import random
 
 '''
 A quick script written for fun. Adds two positive integers manually
@@ -67,14 +68,21 @@ def add(x, y, stdscr):
 	sleep(SECS_AFTER_FINISH)
 
 
+def random_int():
+	# Uniformly distributed over the *lengths* of numbers
+	length = random.randint(1, 16)
+	minimum = 10**(length - 1)
+	maximum = (10**length) - 1
+	return random.randint(minimum, maximum)
+
+
 def main(stdscr):
 	# Make cursor invisible
 	curses.curs_set(0)
 
-	import random
 	while True:
-		x = random.randint(0, 999999999999)
-		y = random.randint(0, 999999999999)
+		x = random_int()
+		y = random_int()
 		add(x, y, stdscr)
 
 
